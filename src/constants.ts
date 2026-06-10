@@ -280,7 +280,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 't-nemmyy',
-    name: "Nemmyy",
+    name: "Nemmy Chand Jangid",
     role: "Theatre Artist",
     content: "As a theatre artist, I have always believed that creative spaces are built not merely with buildings and resources, but with passion, sensitivity, and people deeply devoted to the arts. Studio Bazm and Candid Imagination Production have played a significant role in enriching Jodhpur’s creative and cultural landscape. Through theatre, films, workshops, and various artistic initiatives, they have provided numerous emerging artists with opportunities to learn, grow, and establish their own identity. What particularly stands out is the dedication, creative vision, and unwavering support that Manoj Panwar extends to fellow artists. The meaningful stories produced by Candid Imagination Production and the warm, inspiring atmosphere of Studio Bazm make it more than just an institution, it feels like a family for artists. If you possess a genuine passion for art and storytelling, becoming a part of Studio Bazm can truly be a memorable and enriching experience.",
     avatar: "/nemmy .jpeg",
@@ -437,6 +437,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Production & Creative Head",
     image: "/Chandan%20sharma.png",
     type: 'member',
+    brand: 'candid',
     bio: "The technical backbone, overseeing the rigor of our process to turn every frame into a polished piece of art."
   },
   {
@@ -445,6 +446,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Production Manager",
     image: "/Aayushi%20vyas.png",
     type: 'member',
+    brand: 'candid',
     bio: "The heartbeat of our operations, managing the delicate intersection of resources, schedules, and creativity to ensure no story is left untold."
   },
   {
@@ -453,6 +455,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Production Manager",
     image: "/Vaibhavi%20joshi.png",
     type: 'member',
+    brand: 'candid',
     bio: "The steward of growth and identity, balancing the raw, unmanufactured spirit of our work with the logistics of lasting success."
   },
   {
@@ -465,13 +468,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: "Esteemed Theatre Actor, Director & Acting Mentor, theatre scholar, and RSNK academy award winner."
   },
   {
-    id: 'tm_g1',
-    name: "Brijesh Ambar",
-    role: "Poet, Critic & Editor",
-    image: "/brijesh ambar.png",
+    id: 'tm_g3',
+    name: "Shailendra Vyas",
+    role: "TV & Film Actor / Anchor",
+    image: "/shailendra vyas.png",
     type: 'guest',
     brand: 'bazm',
-    bio: "Poet, critic, editor, and translator. Honoured with the Rajasthan Patrika Creative Literature award for poetry."
+    bio: "TV & Film Actor / Anchor, owner of Shailendra Productions, and famed for Paramavatar Shri Krishna (& TV)."
   },
   {
     id: 'tm_g2',
@@ -483,13 +486,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: "Young actor from Rajasthan, theatre and film craft mentor, and the founder of Craftsman's Casting."
   },
   {
-    id: 'tm_g3',
-    name: "Shailendra Vyas",
-    role: "TV & Film Actor / Anchor",
-    image: "/shailendra vyas.png",
+    id: 'tm_g1',
+    name: "Brijesh Ambar",
+    role: "Poet, Critic & Editor",
+    image: "/brijesh ambar.png",
     type: 'guest',
     brand: 'bazm',
-    bio: "TV & Film Actor / Anchor, owner of Shailendra Productions, and famed for Paramavatar Shri Krishna (& TV)."
+    bio: "Poet, critic, editor, and translator. Honoured with the Rajasthan Patrika Creative Literature award for poetry."
   }
 ];
 
@@ -522,6 +525,12 @@ export const ASSOCIATES: Associate[] = [
     id: 'a5',
     name: "Rhythm Dance Institute",
     image: "/rhythm%20dance%20institute.png",
+    brand: 'both'
+  },
+  {
+    id: 'a6',
+    name: "Antraman Yatri",
+    image: "/antraman_yatri.png",
     brand: 'both'
   }
 ];

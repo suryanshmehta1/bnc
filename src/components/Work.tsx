@@ -181,51 +181,58 @@ export default function Work({ brand }: WorkProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative aspect-[3/4] overflow-hidden rounded-md border border-brand-white/5 bg-brand-grey-dark transform-gpu cursor-default"
+                className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-brand-white/5 bg-brand-grey-dark transform-gpu cursor-default hover:border-brand-yellow/30 hover:scale-[1.01] hover:shadow-2xl hover:shadow-brand-yellow/5 transition-all duration-500"
               >
+                {/* Dark Vignette Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500 z-10 pointer-events-none" />
+                <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/30 group-hover:backdrop-blur-[3px] transition-all duration-500 z-10 pointer-events-none" />
+
                 {/* Image */}
                 <img
                   src={film.image}
                   alt={film.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover filter brightness-[0.6] grayscale transition-all duration-700 group-hover:scale-105 group-hover:brightness-[0.35] group-hover:grayscale-0 transform-gpu"
+                  className="w-full h-full object-cover filter brightness-[0.7] grayscale group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out transform-gpu"
                 />
 
-                {/* Cinematic crop notches */}
-                <div className="absolute top-4 left-4 w-2 h-2 border-t border-l border-brand-yellow/30" />
-                <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-brand-yellow/30" />
-                <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-brand-yellow/30" />
-                <div className="absolute bottom-4 right-4 w-2 h-2 border-b border-r border-brand-yellow/30" />
+                {/* Animated Cinematic crop notches */}
+                <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
+                <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
+                <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
+                <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
 
                 {/* Cover text & Upcoming Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 z-10">
+                <div className="absolute inset-0 flex flex-col justify-between p-7 z-20">
                   {/* Top Header */}
                   <div className="flex justify-between items-start">
-                    <span className="font-mono text-[8px] bg-brand-yellow text-brand-black px-2 py-0.5 rounded-sm uppercase tracking-widest font-black">
+                    <span className="font-mono text-[8px] bg-brand-yellow text-brand-black px-2.5 py-0.5 rounded-sm uppercase tracking-widest font-black">
                       UPCOMING
                     </span>
-                    <span className="font-mono text-[9px] text-brand-white/40">
+                    <span className="font-mono text-[9px] text-brand-white/40 group-hover:text-brand-yellow/80 transition-colors">
                       ROLL_0{index + 7}
                     </span>
                   </div>
 
                   {/* Centered UPCOMING Overlay on Hover */}
-                  <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <span className="text-brand-yellow font-heading text-lg md:text-2xl font-black tracking-[0.25em] uppercase px-4 py-2 border border-brand-yellow/30 bg-brand-black/80 rounded-sm shadow-xl">
-                      upcoming
-                    </span>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-500 ease-out pointer-events-none">
+                    <div className="relative px-6 py-2 border border-brand-yellow/30 bg-brand-black/90 rounded-full shadow-2xl backdrop-blur-sm">
+                      <span className="text-brand-yellow font-heading text-xs tracking-[0.3em] font-black uppercase flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-ping" />
+                        [ PRE-PRODUCTION ]
+                      </span>
+                    </div>
                   </div>
 
                   {/* Bottom Text Area */}
-                  <div className="transition-transform duration-500 group-hover:translate-y-1">
-                    <span className="text-brand-yellow/80 font-mono text-[9px] uppercase tracking-widest">
+                  <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <span className="text-brand-yellow bg-brand-yellow/10 border border-brand-yellow/20 px-2.5 py-0.5 rounded-full font-mono text-[9px] uppercase tracking-widest font-bold">
                       {film.tagline}
                     </span>
-                    <h4 className="text-2xl font-black uppercase text-brand-white tracking-tight mt-1 group-hover:text-brand-yellow transition-colors duration-300">
+                    <h4 className="text-2xl font-black uppercase text-brand-white tracking-tight mt-3 group-hover:text-brand-yellow transition-colors duration-300">
                       {film.title}
                     </h4>
-                    <p className="text-[10px] text-brand-white/50 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-brand-white/50 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 leading-relaxed">
                       {film.desc}
                     </p>
                   </div>
@@ -292,51 +299,58 @@ export default function Work({ brand }: WorkProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative aspect-[3/4] overflow-hidden rounded-md border border-brand-white/5 bg-brand-grey-dark transform-gpu cursor-default"
+                className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-brand-white/5 bg-brand-grey-dark transform-gpu cursor-default hover:border-brand-yellow/30 hover:scale-[1.01] hover:shadow-2xl hover:shadow-brand-yellow/5 transition-all duration-500"
               >
+                {/* Dark Vignette Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500 z-10 pointer-events-none" />
+                <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/30 group-hover:backdrop-blur-[3px] transition-all duration-500 z-10 pointer-events-none" />
+
                 {/* Image */}
                 <img
                   src={film.image}
                   alt={film.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover filter brightness-[0.6] grayscale transition-all duration-700 group-hover:scale-105 group-hover:brightness-[0.35] group-hover:grayscale-0 transform-gpu"
+                  className="w-full h-full object-cover filter brightness-[0.7] grayscale group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out transform-gpu"
                 />
 
-                {/* Cinematic crop notches */}
-                <div className="absolute top-4 left-4 w-2 h-2 border-t border-l border-brand-yellow/30" />
-                <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-brand-yellow/30" />
-                <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-brand-yellow/30" />
-                <div className="absolute bottom-4 right-4 w-2 h-2 border-b border-r border-brand-yellow/30" />
+                {/* Animated Cinematic crop notches */}
+                <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
+                <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
+                <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
+                <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-brand-white/10 group-hover:border-brand-yellow group-hover:scale-110 transition-all duration-500 z-20" />
 
                 {/* Cover text & Upcoming Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 z-10">
+                <div className="absolute inset-0 flex flex-col justify-between p-7 z-20">
                   {/* Top Header */}
                   <div className="flex justify-between items-start">
-                    <span className="font-mono text-[8px] bg-brand-yellow text-brand-black px-2 py-0.5 rounded-sm uppercase tracking-widest font-black">
+                    <span className="font-mono text-[8px] bg-brand-yellow text-brand-black px-2.5 py-0.5 rounded-sm uppercase tracking-widest font-black">
                       UPCOMING
                     </span>
-                    <span className="font-mono text-[9px] text-brand-white/40">
+                    <span className="font-mono text-[9px] text-brand-white/40 group-hover:text-brand-yellow/80 transition-colors">
                       PLAY_OS{index + 1}
                     </span>
                   </div>
 
                   {/* Centered UPCOMING Overlay on Hover */}
-                  <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <span className="text-brand-yellow font-heading text-lg md:text-2xl font-black tracking-[0.25em] uppercase px-4 py-2 border border-brand-yellow/30 bg-brand-black/80 rounded-sm shadow-xl">
-                      upcoming
-                    </span>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-500 ease-out pointer-events-none">
+                    <div className="relative px-6 py-2 border border-brand-yellow/30 bg-brand-black/90 rounded-full shadow-2xl backdrop-blur-sm">
+                      <span className="text-brand-yellow font-heading text-xs tracking-[0.3em] font-black uppercase flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-ping" />
+                        [ STAGE DEBUT ]
+                      </span>
+                    </div>
                   </div>
 
                   {/* Bottom Text Area */}
-                  <div className="transition-transform duration-500 group-hover:translate-y-1">
-                    <span className="text-brand-yellow/80 font-mono text-[9px] uppercase tracking-widest font-bold">
+                  <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <span className="text-brand-yellow bg-brand-yellow/10 border border-brand-yellow/20 px-2.5 py-0.5 rounded-full font-mono text-[9px] uppercase tracking-widest font-bold">
                       {film.tagline}
                     </span>
-                    <h4 className="text-2xl font-black uppercase text-brand-white tracking-tight mt-1 group-hover:text-brand-yellow transition-colors duration-300">
+                    <h4 className="text-2xl font-black uppercase text-brand-white tracking-tight mt-3 group-hover:text-brand-yellow transition-colors duration-300">
                       {film.title}
                     </h4>
-                    <p className="text-[10px] text-brand-white/50 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-brand-white/50 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 leading-relaxed">
                       {film.desc}
                     </p>
                   </div>

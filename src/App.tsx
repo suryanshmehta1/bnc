@@ -33,6 +33,7 @@ import { LEGAL_CONTENT } from './constants';
 const Chatbot = lazy(() => import('./components/Chatbot'));
 const LegalModal = lazy(() => import('./components/LegalModal'));
 const BookingPage = lazy(() => import('./components/BookingPage'));
+const CIFFMicropage = lazy(() => import('./components/CIFFMicropage'));
 
 function MainSite({ brand, onToggle, onOpenLegal }: { 
   brand: Brand; 
@@ -237,6 +238,7 @@ export default function App() {
                       />
                     } />
                     <Route path="/book-space" element={<BookingPage />} />
+                    <Route path="/ciff" element={<CIFFMicropage />} />
                   </Routes>
                 </Suspense>
               </main>

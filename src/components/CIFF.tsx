@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Calendar, Film, Bell, Clock, ArrowRight, Star, Heart, Award, CheckCircle2, MessageSquare, Mail } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
 import Counter from './Counter';
 
 import { db, handleFirestoreError, OperationType, serverTimestamp } from '../lib/firebase';
@@ -21,8 +22,8 @@ export default function CIFF() {
   const [deliveryInfo, setDeliveryInfo] = useState<any>(null);
 
   useEffect(() => {
-    // Target date set to February 15, 2027
-    const targetDate = new Date("2027-02-15T09:00:00Z").getTime();
+    // Target date set to February 13, 2027
+    const targetDate = new Date("2027-02-13T09:00:00Z").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -46,12 +47,13 @@ export default function CIFF() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleRsvpSubmit = async (e: React.FormEvent) => {
+  const handleRsvpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!rsvpEmail.trim()) return;
 
     setIsSubmitting(true);
     setErrorMsg('');
+    const formElement = e.currentTarget;
     try {
       const emailVal = rsvpEmail.trim().toLowerCase();
       const path = 'subscribers';
@@ -85,13 +87,11 @@ export default function CIFF() {
         console.warn('Server notification pipeline skipped or failed:', srvErr);
       }
 
-      // 3. EmailJS Direct submission (Service: contact_service, Template: template_7ntq4x8, User Key: mmVyHtFW8z_AsySGH)
-      await emailjs.send(
+      // 3. EmailJS Direct submission via sendForm (Service: contact_service, Template: template_7ntq4x8)
+      await emailjs.sendForm(
         'contact_service',
         'template_7ntq4x8',
-        {
-          user_email: emailVal,
-        },
+        formElement,
         'mmVyHtFW8z_AsySGH'
       );
 
@@ -133,7 +133,7 @@ export default function CIFF() {
     {
       phase: "Phase 03",
       title: "Grand Festival Gala",
-      date: "February 15-18, 2027",
+      date: "February 13-16, 2027",
       desc: "Four days of intensive 35mm screenings, director QA panels, live ambient scoring, and official jury reward ceremonies."
     }
   ];
@@ -179,6 +179,21 @@ export default function CIFF() {
           <p className="text-brand-white/60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
             A celebration of authentic story structures and cinema in its rawest, most poetic form. We are bringing experimental independent short films, avant-garde documentations, and Rajasthani masterworks together in Jodhpur, Rajasthan.
           </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 flex justify-center text-center"
+          >
+            <Link
+              to="/ciff"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-brand-yellow hover:bg-brand-yellow/90 text-brand-black font-mono text-xs uppercase tracking-widest font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-yellow/10"
+            >
+              <span>Explore Immersive Festival Portal</span>
+              <ArrowRight size={14} />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Cinematic Countdown Segment */}
@@ -264,7 +279,7 @@ export default function CIFF() {
           </div>
           
           <p className="text-[10px] text-brand-yellow font-mono uppercase tracking-[0.2em] mt-4">
-            LIVE MAIN GALA: JODHPUR • FEBRUARY 15, 2027
+            LIVE MAIN GALA: JODHPUR • FEBRUARY 13, 2027
           </p>
         </div>
 
@@ -458,12 +473,14 @@ export default function CIFF() {
                     </div>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleRsvpSubmit} className="space-y-4">
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-brand-white/40 block">Email Coordinate</label>
+                  <form id="festival-form" onSubmit={handleRsvpSubmit} className="space-y-4">
+                    <label htmlFor="user_email" className="text-[10px] font-mono uppercase tracking-widest text-brand-white/40 block">Email Coordinate</label>
                     <div className="flex gap-2">
                       <input
                         required
                         type="email"
+                        id="user_email"
+                        name="user_email"
                         disabled={isSubmitting}
                         value={rsvpEmail}
                         onChange={(e) => setRsvpEmail(e.target.value)}

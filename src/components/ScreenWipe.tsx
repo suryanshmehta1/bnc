@@ -41,37 +41,54 @@ export default function ScreenWipe({ nextBrand, onMidpoint, onComplete }: Screen
 
   return (
     <div className="fixed inset-0 z-[10000] pointer-events-auto overflow-hidden">
-      {/* 1. Leading Golden/Yellow Accent Curtain */}
-      <motion.div
-        initial={{ x: '-100%' }}
-        animate={{
-          x: phase === 'entering' ? '0%' : phase === 'holding' ? '0%' : '100%',
-        }}
-        transition={{
-          duration: 0.7,
-          ease: transitionEase,
-          delay: phase === 'entering' ? 0 : 0.08, // Staggered offset
-        }}
-        className="absolute inset-0 bg-brand-yellow w-full h-full z-10 opacity-90"
-      />
+      {/* 1. Leading Golden/Yellow Accent Vertical Shutter Bars */}
+      <div className="absolute inset-0 z-10 flex pointer-events-none">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <motion.div
+            key={`gold-bar-${i}`}
+            initial={{ y: '-100%' }}
+            animate={{
+              y: phase === 'entering' ? '0%' : phase === 'holding' ? '0%' : '100%',
+            }}
+            transition={{
+              duration: 0.65,
+              ease: transitionEase,
+              delay: phase === 'entering' ? i * 0.05 : (4 - i) * 0.05,
+            }}
+            className="h-full flex-1 bg-brand-yellow opacity-90 border-r border-brand-black/10"
+          />
+        ))}
+      </div>
 
-      {/* 2. Main Matte Black Curtain */}
+      {/* 2. Main Matte Black Vertical Shutter Bars */}
+      <div className="absolute inset-0 z-20 flex pointer-events-none">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <motion.div
+            key={`black-bar-${i}`}
+            initial={{ y: '-100%' }}
+            animate={{
+              y: phase === 'entering' ? '0%' : phase === 'holding' ? '0%' : '100%',
+            }}
+            transition={{
+              duration: 0.65,
+              ease: transitionEase,
+              delay: phase === 'entering' ? i * 0.05 + 0.05 : (4 - i) * 0.05 + 0.05,
+            }}
+            className="h-full flex-1 bg-brand-black border-r border-brand-white/5 relative"
+          >
+            {/* Cinematic Film-Grain Overlay on each column */}
+            <div className="absolute inset-0 film-grain opacity-[0.08] pointer-events-none" />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* 3. Floating Overlay Container with Title & HUD */}
       <motion.div
-        initial={{ x: '-100%' }}
-        animate={{
-          x: phase === 'entering' ? '0%' : phase === 'holding' ? '0%' : '100%',
-        }}
-        transition={{
-          duration: 0.7,
-          ease: transitionEase,
-          delay: phase === 'entering' ? 0.08 : 0, // Inversed delay on exit for clean layering
-        }}
-        className="absolute inset-0 bg-brand-black w-full h-full z-20 flex flex-col items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: phase === 'holding' ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none"
       >
-        {/* Cinematic Film-Grain Overlays on Curtain */}
-        <div className="absolute inset-0 film-grain opacity-20 pointer-events-none" />
-
-        {/* Dynamic Transition Graphic / Focus Mark */}
         <div className="relative flex flex-col items-center justify-center p-8 text-center max-w-md">
           {/* Stylized camera lens boundary marks */}
           <motion.div
@@ -108,7 +125,7 @@ export default function ScreenWipe({ nextBrand, onMidpoint, onComplete }: Screen
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.4 }}
-            className="space-y-2"
+            className="space-y-2 pointer-events-auto"
           >
             <span className="text-[10px] tracking-[0.4em] font-mono text-brand-white/40 uppercase block">
               Initializing Experience
