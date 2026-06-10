@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Space Booking",
+      "description": "A request to book studio space.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the requester" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "date": { "type": "string", "description": "Date of booking" },
+        "duration": { "type": "string" },
+        "purpose": { "type": "string" },
+        "attendees": { "type": "string" },
+        "requirements": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "phone", "date", "purpose", "createdAt"]
+    },
+    "Inquiry": {
+      "title": "Contact Inquiry",
+      "description": "General contact inquiry from the contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "type": { "type": "string" },
+        "message": { "type": "string" },
+        "brand": { "type": "string", "enum": ["candid", "bazm"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "type", "message", "brand", "createdAt"]
+    },
+    "Subscriber": {
+      "title": "Newsletter Subscriber",
+      "description": "Email subscriber for CIFF newsletter and regular updates.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "bookings": {
+      "schema": "Booking",
+      "description": "Collection of space booking requests."
+    },
+    "inquiries": {
+      "schema": "Inquiry",
+      "description": "Collection of general contact inquiries."
+    },
+    "subscribers": {
+      "schema": "Subscriber",
+      "description": "Collection of newsletter subscribers for CIFF updates."
+    }
+  }
+}

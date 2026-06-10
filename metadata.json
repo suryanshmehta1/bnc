@@ -1,0 +1,8 @@
+{
+  "name": "Candid Imagination & Studio Bazm",
+  "description": "Premium creative agency portfolio for Candid Imagination (Film Production) and Studio Bazm (Theatre & Performing Arts).",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

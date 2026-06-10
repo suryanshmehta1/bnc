@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Validation for Booking
+    function isValidBooking(data) {
+      return data.size() == 9
+        && 'name' in data && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && 'email' in data && data.email is string && data.email.size() <= 100
+        && 'phone' in data && data.phone is string && data.phone.size() <= 20
+        && 'date' in data && data.date is string && data.date.size() <= 20
+        && 'duration' in data && data.duration is string && data.duration.size() <= 50
+        && 'purpose' in data && data.purpose is string && data.purpose.size() <= 1000
+        && 'attendees' in data && data.attendees is string && data.attendees.size() <= 20
+        && 'requirements' in data && data.requirements is list && data.requirements.size() <= 20
+        && 'createdAt' in data && data.createdAt == request.time;
+    }
+
+    // Validation for Inquiry
+    function isValidInquiry(data) {
+      return data.size() == 7
+        && 'name' in data && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && 'email' in data && data.email is string && data.email.size() <= 100
+        && 'phone' in data && data.phone is string && data.phone.size() <= 20
+        && 'type' in data && data.type is string && data.type.size() <= 50
+        && 'message' in data && data.message is string && data.message.size() <= 2000
+        && 'brand' in data && data.brand in ['candid', 'bazm']
+        && 'createdAt' in data && data.createdAt == request.time;
+    }
+
+    // Validation for Subscriber
+    function isValidSubscriber(data) {
+      return data.size() == 2
+        && 'email' in data && data.email is string && data.email.size() <= 100
+        && 'createdAt' in data && data.createdAt == request.time;
+    }
+
+    match /bookings/{bookingId} {
+      allow create: if isValidId(bookingId) && isValidBooking(incoming());
+      // Admin could be added here later for read access
+    }
+
+    match /inquiries/{inquiryId} {
+      allow create: if isValidId(inquiryId) && isValidInquiry(incoming());
+    }
+
+    match /subscribers/{subscriberId} {
+      allow create: if isValidId(subscriberId) && isValidSubscriber(incoming());
+    }
+  }
+}
