@@ -102,7 +102,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     id: 'p_ttb',
-    title: 'The Third Bell',
+    title: 'Kandhe Par Betha Tha Saap',
     category: 'Experimental Theatre',
     image: '/ttb.png',
     brand: 'bazm',
@@ -288,9 +288,9 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 't-harsh',
-    name: "Harsh",
-    role: "Creative Artist",
-    content: "Bazm Studio stands as a remarkable creative platform that truly values art, storytelling, and artistic excellence. Its commitment to nurturing talent and creating meaningful work has made a positive impact on many artists and creators. Special appreciation to Manoj Sir for his vision, leadership, and unwavering support for the creative community. I highly recommend Bazm Studio to anyone seeking an inspiring and professional environment for artistic growth and collaboration.",
+    name: "Harsh Panchalwar",
+    role: "Choreographer & Creative Artist",
+    content: "Collaborating with Candid Imagination and Studio Bazm has been a monumental step in my creative journey as a Choreographer and Creative Artist. In theater productions like 'Man Manthan,' they provided me with complete artistic freedom to transform deep feelings of vulnerability and hope into visceral physical movements. Their absolute commitment to authentic, high-concept storytelling and physical expression is unparalleled. Manoj Panwar's mentorship and support have turned these two studios into safe, inspiring sanctuaries for Jodhpur's dynamic artistic community.",
     avatar: "/harsh.jpeg",
     brand: 'candid'
   },
@@ -381,36 +381,6 @@ export const TESTIMONIALS: Testimonial[] = [
     content: "Awesome experience, learned a lot. A family bond was formed. ❤️🫶🏻",
     avatar: "https://images.unsplash.com/photo-1506794778242-92524d5d3921?auto=format&fit=crop&q=80",
     brand: 'bazm'
-  },
-  {
-    id: 't2',
-    name: "Sarah Khan",
-    role: "Commercial Client",
-    content: "Candid Imagination delivered a visually stunning ad film that exceeded our expectations. Truly professional cinematic layout and pacing.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
-    brand: 'candid',
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-video-camera-filming-a-filmmaker-on-set-34351-large.mp4",
-    thumbnailUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80",
-    duration: "0:45"
-  },
-  {
-    id: 't5',
-    name: "Elena Rostova",
-    role: "Marketing Director",
-    content: "Our corporate storytelling video captures everything we represent. Exceptional detail in lighting, camera angles, and transitions.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80",
-    brand: 'candid',
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-director-looking-at-a-monitor-on-a-film-set-34444-large.mp4",
-    thumbnailUrl: "https://images.unsplash.com/photo-1533488765986-dfa2a9939acd?auto=format&fit=crop&q=80",
-    duration: "2:02"
-  },
-  {
-    id: 't6',
-    name: "Ayush Saxena",
-    role: "Indie Filmmaker",
-    content: "From co-producing to arranging editing setups, the team at Candid has been a rock-solid support for our independent debut.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
-    brand: 'candid'
   }
 ];
 
