@@ -23,10 +23,8 @@ export default function Showreel({ brand }: ShowreelProps) {
     return () => clearInterval(interval);
   }, []);
 
-  // Cinematic mock URLs for Candid vs Bazm
-  const videoUrl = brand === 'candid'
-    ? 'https://assets.mixkit.co/videos/preview/mixkit-filmmaker-directing-and-shooting-a-scene-on-set-34352-large.mp4'
-    : 'https://assets.mixkit.co/videos/preview/mixkit-actor-performing-on-stage-under-spotlights-42289-large.mp4';
+  // Video URL pointing to uploaded studio_bazm_reel.mp4 for both Candid and Bazm
+  const videoUrl = '/studio_bazm_reel.mp4';
 
   const posterUrl = brand === 'candid'
     ? 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80'
