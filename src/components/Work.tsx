@@ -260,28 +260,28 @@ export default function Work({ brand }: WorkProps) {
               {
                 id: 'up-b1',
                 title: "Women Alone",
-                image: "https://images.unsplash.com/photo-1514302240736-b1fee5985889?auto=format&fit=crop&q=80",
+                image: "/women_alone.png",
                 tagline: "English Solo Play",
                 desc: "A bold, tragicomic exploration of isolation, freedom, and resilience written by Dario Fo and Franca Rame."
               },
               {
                 id: 'up-b2',
                 title: "Maut Kyu Raat Bhar Nahi Aati",
-                image: "https://images.unsplash.com/photo-1503091315242-cb8bb2321c8e?auto=format&fit=crop&q=80",
+                image: "/maut_kyu_raat_bhar_nhi_aati.png",
                 tagline: "Poetic Existential Drama",
                 desc: "Drawing from Ghalib's absolute inquiries, this physical theatre piece delves into mortality, time, and human destiny."
               },
               {
                 id: 'up-b3',
                 title: "Heer Ranjha",
-                image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80",
+                image: "/heer_ranjha.png",
                 tagline: "Sufi Musical Legend",
                 desc: "A rich, classical musical staging of Waris Shah’s epic romance, interlaced with authentic Punjabi and Rajasthani folk rhythms."
               },
               {
                 id: 'up-b4',
                 title: "Joun Elia",
-                image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80",
+                image: "/joun_elia.png",
                 tagline: "Urdu Monologues & Poetry",
                 desc: "An intense, dark stage portrayal celebrating the raw genius, angst, and nihilistic philosophy of modern Urdu’s finest poet."
               },
