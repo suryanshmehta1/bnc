@@ -10,6 +10,9 @@ interface TeamProps {
 
 // Custom visual leveling configuration to make all portrait photos crop and resize perfectly equally.
 const getImageClasses = (id: string) => {
+  if (id === 'tm2') {
+    return "w-full h-full object-cover object-[center_12%] scale-[2.2] group-hover:scale-[2.32] transition-all duration-700 ease-out";
+  }
   return "w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-all duration-700 ease-out";
 };
 
