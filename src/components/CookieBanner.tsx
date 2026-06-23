@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Cookie, X } from 'lucide-react';
 import { Brand } from '../types';
+import { safeLocalStorage } from '../lib/storage';
 
 interface CookieBannerProps {
   brand: Brand;
@@ -11,7 +12,7 @@ export default function CookieBanner({ brand }: CookieBannerProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
+    const consent = safeLocalStorage.getItem('cookie-consent');
     if (!consent) {
       const timer = setTimeout(() => {
         setIsVisible(true);
@@ -21,12 +22,12 @@ export default function CookieBanner({ brand }: CookieBannerProps) {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    safeLocalStorage.setItem('cookie-consent', 'accepted');
     setIsVisible(false);
   };
 
   const handleDecline = () => {
-    localStorage.setItem('cookie-consent', 'declined');
+    safeLocalStorage.setItem('cookie-consent', 'declined');
     setIsVisible(false);
   };
 

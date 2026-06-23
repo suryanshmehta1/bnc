@@ -20,8 +20,13 @@ export default function Hero({ brand }: HeroProps) {
     if (brand === 'bazm') {
       navigate('/book-space');
     } else {
-      const contactSection = document.getElementById('contact');
-      contactSection?.scrollIntoView({ behavior: 'smooth' });
+      const workSection = document.getElementById('work');
+      if (workSection) {
+        workSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        const contactSection = document.getElementById('contact');
+        contactSection?.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -104,7 +109,7 @@ export default function Hero({ brand }: HeroProps) {
                 rel="noreferrer"
                 className="border border-brand-white/20 text-brand-white px-10 py-4 font-black uppercase text-xs tracking-widest hover:bg-brand-white hover:text-brand-black transition-all text-center rounded-sm"
               >
-                Join Workshop
+                Join Classes
               </a>
             )}
           </motion.div>

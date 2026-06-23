@@ -88,7 +88,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     year: '2026',
     credits: {
       'Director': 'Manoj Panwar',
-      'Lead Writer': 'Nemmy',
+      'Lead Writer': 'Nemmy Makad',
       'Lead Actor': 'Haider Ali',
       'Choreographer': 'Harsh',
       'Location': 'Studio Bazm Black-Box'
@@ -280,7 +280,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 't-nemmyy',
-    name: "Nemi",
+    name: "Nemi Chand Jangid",
     role: "Theatre Artist",
     content: "As a theatre artist, I have always believed that creative spaces are built not merely with buildings and resources, but with passion, sensitivity, and people deeply devoted to the arts. Studio Bazm and Candid Imagination Production have played a significant role in enriching Jodhpur’s creative and cultural landscape. Through theatre, films, workshops, and various artistic initiatives, they have provided numerous emerging artists with opportunities to learn, grow, and establish their own identity. What particularly stands out is the dedication, creative vision, and unwavering support that Manoj Panwar extends to fellow artists. The meaningful stories produced by Candid Imagination Production and the warm, inspiring atmosphere of Studio Bazm make it more than just an institution, it feels like a family for artists. If you possess a genuine passion for art and storytelling, becoming a part of Studio Bazm can truly be a memorable and enriching experience.",
     avatar: "/nemmy .jpeg",

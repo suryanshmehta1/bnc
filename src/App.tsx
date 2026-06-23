@@ -29,6 +29,7 @@ import ClickSpark from './components/ClickSpark';
 import ScreenWipe from './components/ScreenWipe';
 import { Brand } from './types';
 import { LEGAL_CONTENT } from './constants';
+import { safeSessionStorage } from './lib/storage';
 
 const Chatbot = lazy(() => import('./components/Chatbot'));
 const LegalModal = lazy(() => import('./components/LegalModal'));
@@ -117,16 +118,16 @@ export default function App() {
     }
   }, [brand]);
 
-  // Read loading from sessionStorage to simplify live reloading
+  // Read loading from sessionStorage safely to simplify live reloading
   useEffect(() => {
-    const isShown = sessionStorage.getItem('cinematic_loader_shown');
+    const isShown = safeSessionStorage.getItem('cinematic_loader_shown');
     if (isShown === 'true') {
       setLoading(false);
     }
   }, []);
 
   const handleLoadingComplete = () => {
-    sessionStorage.setItem('cinematic_loader_shown', 'true');
+    safeSessionStorage.setItem('cinematic_loader_shown', 'true');
     setLoading(false);
   };
 
@@ -155,21 +156,35 @@ export default function App() {
     };
   }, [location.pathname, loading]);
 
-  // Smooth scroll implementation for hash links
+  // Smooth scroll implementation for hash links with robust try-catch and clean event delegation
   useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-        if (!href) return;
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth'
-          });
+    const handleHashClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        if (href === '#') {
+          e.preventDefault();
+          return;
         }
-      });
-    });
+        e.preventDefault();
+        try {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        } catch (err) {
+          console.warn('Smooth scroll failed for selector:', href, err);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleHashClick);
+    return () => {
+      document.removeEventListener('click', handleHashClick);
+    };
   }, [location.pathname, loading]);
 
   return (
